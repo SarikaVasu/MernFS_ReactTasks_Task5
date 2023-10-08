@@ -13,12 +13,17 @@ const Body = ({date,setDate,age,setAge}) => {
                 dayAge < 0 ? tempAge - 1 
                 : tempAge
             ) : tempAge ;
-        setAge(tempAge);
-        document.getElementById("result").style.display="flex"; 
+        if(date) {
+            setAge(tempAge);
+            document.getElementById("result").style.display="flex"; 
+        } else {
+            document.getElementById("errorMsg").style.display="flex";
+        }
     }
 
     useEffect(() => {
-        document.getElementById("result").style.display="none";    
+        document.getElementById("result").style.display="none";
+        document.getElementById("errorMsg").style.display="none";
     },[date])
 
   return (
@@ -37,6 +42,7 @@ const Body = ({date,setDate,age,setAge}) => {
                 Calculate Age
         </button>
         <h2 className='result' id='result'>You are {age} {age === 1 ? 'year' : 'years'} old</h2>
+        <h2 id='errorMsg'>Please enter a valid date of birth</h2>
     </main>
   )
 }
